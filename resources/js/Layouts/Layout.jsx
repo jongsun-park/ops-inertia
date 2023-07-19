@@ -23,6 +23,9 @@ export default function Layout({ children }) {
                             <Link href="/yarns">Yarns</Link>
                         </li>
                         <li className="hover:underline">
+                            <Link href="/looms">Looms</Link>
+                        </li>
+                        <li className="hover:underline">
                             <Link href="/wash_options">Wash Options</Link>
                         </li>
                     </ul>

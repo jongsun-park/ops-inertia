@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoomController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\YarnController;
@@ -50,6 +51,13 @@ Route::post('/yarns', [YarnController::class, 'store']);
 Route::get('/yarns/{yarn}/edit', [YarnController::class, 'edit']);
 Route::put('/yarns/{yarn}', [YarnController::class, 'update']); //
 Route::delete('/yarns/{yarn}', [YarnController::class, 'destroy']);
+
+
+// Loom
+Route::get('/looms', [LoomController::class, 'index'])->name('looms');
+Route::post('/looms', [LoomController::class, 'store']);
+Route::post('/looms/{loom}', [LoomController::class, 'update']);
+Route::delete('/looms/{loom}', [LoomController::class, 'destroy']);
 
 
 // Production

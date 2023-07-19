@@ -3,7 +3,7 @@ import Layout from "@/Layouts/Layout";
 import { Pagination } from "@/Components/Pagination";
 import Label from "@/Components/UI/Label";
 
-export default function Products({ yarns = [] }) {
+export default function Yarns({ yarns = [] }) {
     return (
         <Layout>
             <Head title="Yarns" />
