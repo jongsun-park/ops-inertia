@@ -1,4 +1,4 @@
-const formatLabel = (label) => label.replace("_", " ").toUpperCase();
+const formatLabel = (label) => label.replaceAll("_", " ").toUpperCase();
 
 export const TextInput = ({
     name,

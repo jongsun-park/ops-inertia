@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Loom;
 use App\Models\Yarn;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -30,7 +31,7 @@ class ProductFactory extends Factory
             'divs' => fake()->randomDigit(), // 2,
             'ppcm' => fake()->randomDigit(), // 20,
             'pprepeat' => fake()->randomDigit(), // 2000,
-            'loom' => fake()->word(), // '3:DB4',
+            'loom_id' => Loom::factory(), // '3:DB4',
             'cut_width' => fake()->randomDigit(), // '59',
             'cut_length' => fake()->randomDigit(), // '87',
             'finish_width' => fake()->randomDigit(), // '56',

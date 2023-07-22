@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\LoomController;
+use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WashOptionController;
 use App\Http\Controllers\YarnController;
 use App\Models\Product;
 use Illuminate\Foundation\Application;
@@ -59,5 +61,19 @@ Route::post('/looms', [LoomController::class, 'store']);
 Route::post('/looms/{loom}', [LoomController::class, 'update']);
 Route::delete('/looms/{loom}', [LoomController::class, 'destroy']);
 
+// Wash Options
+Route::get('/wash_options', [WashOptionController::class, 'index'])->name('wash_options');
+Route::get('/wash_options/create', [WashOptionController::class, 'create']);
+Route::post('/wash_options', [WashOptionController::class, 'store']);
+Route::get('/wash_options/{wash_option}/edit', [WashOptionController::class, 'edit']);
+Route::put('/wash_options/{wash_option}', [WashOptionController::class, 'update']); //
+Route::delete('/wash_options/{wash_option}', [WashOptionController::class, 'destroy']);
+
 
 // Production
+Route::get('/productions', [ProductionController::class, 'index'])->name('productions');
+Route::get('/productions/create', [ProductionController::class, 'create']);
+Route::post('/productions', [ProductionController::class, 'store']);
+Route::get('/productions/{production}/edit', [ProductionController::class, 'edit']);
+Route::put('/productions/{production}', [ProductionController::class, 'update']); //
+Route::delete('/productions/{production}', [ProductionController::class, 'destroy']);

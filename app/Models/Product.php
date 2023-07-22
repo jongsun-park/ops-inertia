@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Loom;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
@@ -13,7 +14,7 @@ class Product extends Model
 
     public function warp()
     {
-        return $this->hasone(Yarn::class, 'id', 'warp_id');
+        return $this->hasOne(Yarn::class, 'id', 'warp_id');
     }
 
     public function weft_1()
@@ -34,5 +35,15 @@ class Product extends Model
     public function weft_4()
     {
         return $this->hasOne(Yarn::class, 'id', 'weft_4_id');
+    }
+
+    public function productions()
+    {
+        return $this->hasMany(Production::class);
+    }
+
+    public function loom()
+    {
+        return $this->belongsTo(Loom::class);
     }
 }

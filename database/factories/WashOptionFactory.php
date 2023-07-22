@@ -17,7 +17,14 @@ class WashOptionFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => join("-", fake()->words(3)),
+            'temp' => fake()->word(),
+            'detergt' => fake()->word(),
+            'softener' => fake()->word(),
+            'obas' => fake()->word(),
+            'starch' => fake()->word(),
+            'temble' => fake()->word(),
+            'other' => fake()->word(),
         ];
     }
 }

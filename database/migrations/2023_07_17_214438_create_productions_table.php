@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('productions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->nullable();
+            $table->foreignId('product_id')->nullable()->constrained();
             $table->text('order_id')->nullable();
             $table->text('customer')->nullable();
             $table->text('urgency')->nullable();
             $table->text('quantity')->nullable();
             $table->text('total_length')->nullable();
             $table->text('num_of_repeats')->nullable();
-            $table->foreignId('witten_by')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained();
             $table->text('note')->nullable();
             $table->foreignId('wash_option_id')->nullable()->constrained(table: 'wash_options');
             $table->text('packing')->nullable();

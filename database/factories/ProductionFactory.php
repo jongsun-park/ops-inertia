@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
+use App\Models\User;
+use App\Models\WashOption;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +20,17 @@ class ProductionFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'product_id' => Product::factory(),
+            'order_id' => fake()->word(),
+            'customer' => fake()->word(),
+            'urgency' => fake()->word(),
+            'quantity' => fake()->randomDigit(),
+            'total_length' => fake()->randomDigit(),
+            'num_of_repeats' => fake()->randomDigit(),
+            'user_id' => User::factory(),
+            'note' => fake()->text(),
+            'wash_option_id' => WashOption::factory(),
+            'packing' => fake()->word(),
         ];
     }
 }

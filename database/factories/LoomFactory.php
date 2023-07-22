@@ -17,7 +17,7 @@ class LoomFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => join("-", fake()->words(3))
         ];
     }
 }

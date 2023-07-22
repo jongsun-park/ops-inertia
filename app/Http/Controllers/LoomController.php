@@ -48,12 +48,12 @@ class LoomController extends Controller
 
         $loom->update($attributes);
 
-        return redirect("looms");
+        return redirect()->route("looms", ['looms' => Loom::latest()->get()]);
     }
 
     public function destroy(Loom $loom)
     {
         $loom->delete();
-        return redirect("looms");
+        return redirect()->route("looms", ['looms' => Loom::latest()->get()]);
     }
 }

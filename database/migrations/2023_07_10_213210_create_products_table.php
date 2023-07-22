@@ -27,7 +27,7 @@ return new class extends Migration
             $table->integer('divs')->nullable(); // 2
             $table->integer('ppcm')->nullable(); // 20
             $table->integer('pprepeat')->nullable(); // 2000
-            $table->string('loom')->nullable(); // foreign: loom // 3:DB4
+            $table->foreignId('loom_id')->nullable()->constrained(); // foreign: loom // 3:DB4
             $table->integer('cut_width')->nullable(); // 59 // cm
             $table->integer('cut_length')->nullable(); // 87 // cm
             $table->integer('finish_width')->nullable(); // 56 // cm
