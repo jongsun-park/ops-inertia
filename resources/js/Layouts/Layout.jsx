@@ -1,37 +1,35 @@
 import ApplicationLogo from "@/Components/ApplicationLogo";
-import { Link } from "@inertiajs/react";
+import NavLink from "@/Components/NavLink";
 
 export default function Layout({ children }) {
     return (
         <div className="flex flex-col min-h-screen">
-            <header className="bg-gray-100 flex justify-between p-4">
-                <h1 className="font-semibold site-logo text-xl">
-                    <Link href="/">OPS & Inertia</Link>
-                </h1>
+            <header className="bg-gray-100/60 flex justify-between p-4 fixed top-0 left-0 right-0 shadow-sm">
+                <ApplicationLogo />
                 <nav>
                     <ul className="flex space-x-8">
-                        <li className="hover:underline">
-                            <Link href="/">Home</Link>
+                        <li>
+                            <NavLink href="/">Home</NavLink>
                         </li>
-                        <li className="hover:underline">
-                            <Link href="/products">Products</Link>
+                        <li>
+                            <NavLink href="/products">Products</NavLink>
                         </li>
-                        <li className="hover:underline">
-                            <Link href="/productions">Productions</Link>
+                        <li>
+                            <NavLink href="/productions">Productions</NavLink>
                         </li>
-                        <li className="hover:underline">
-                            <Link href="/yarns">Yarns</Link>
+                        <li>
+                            <NavLink href="/yarns">Yarns</NavLink>
                         </li>
-                        <li className="hover:underline">
-                            <Link href="/looms">Looms</Link>
+                        <li>
+                            <NavLink href="/looms">Looms</NavLink>
                         </li>
-                        <li className="hover:underline">
-                            <Link href="/wash_options">Wash Options</Link>
+                        <li>
+                            <NavLink href="/wash_options">Wash Options</NavLink>
                         </li>
                     </ul>
                 </nav>
             </header>
-            <main className="flex-1 p-6">{children}</main>
+            <main className="flex-1 p-6 mt-10">{children}</main>
             <footer className="bg-gray-800 p-4 text-white flex flex-row justify-between">
                 <p className="copy">&copy; All rights are reserved</p>
                 <p className="author">

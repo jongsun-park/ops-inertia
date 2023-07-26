@@ -1,7 +1,22 @@
-## TODO
+OPS TODO
 
--   SKU 를 사용자가 직접 입력하는 대신, 다른 필드의 값으로 생성하기 - 리액트?
--   Looms 페이지를 다른 테이블도 사용할 수 있도록 범용으로 페이지 작성하기 - 아이디와 네임만 있는 테이블
--   product 와 loom 연결 하기 (one to many)
-    -   product->loom
-    -   loom->products
+Completed
+
+-   wash option 제출 폼 만들기 // DONE
+-   Resource 구현 // DONE
+-   컴포넌트 분리 // DONE
+-   Production 페이지 // DONE
+
+TODO
+
+-   Product Form 에서 Loom 필드 셀렉 요소로 만들기 // DONE
+-   Refactoring Layout
+
+-   리액트 셀렉트 컴포넌트를 사용해서 검색 가능 하도록 하기
+-   프로덕트 리스트에서 버튼을 클릭하여 프로덕션 생성하는 버튼 만들기
+
+-   nullOnDelete(); - Relationship
+
+-   로거 컴포넌트
+
+-   인증

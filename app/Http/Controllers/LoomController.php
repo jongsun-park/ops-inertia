@@ -11,7 +11,7 @@ class LoomController extends Controller
 
     public function index()
     {
-        return Inertia::render('Loom/Index', [
+        return Inertia::render('Looms/Index', [
             'looms' => Loom::latest()->get(),
         ]);
     }

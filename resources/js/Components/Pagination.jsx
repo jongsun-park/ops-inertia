@@ -5,9 +5,9 @@ import { Link } from "@inertiajs/react";
 export const Pagination = ({ links, className }) => {
     function getClassName(active) {
         if (active) {
-            return "mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-primary focus:text-primary bg-gray-700 text-white";
+            return "mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-gray-900 hover:text-white focus:border-primary focus:text-primary bg-gray-700 text-white";
         } else {
-            return "mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-primary focus:text-primary";
+            return "mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-gray-900 hover:text-white focus:border-primary focus:text-primary";
         }
     }
 

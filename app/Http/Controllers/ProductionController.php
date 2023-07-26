@@ -35,13 +35,14 @@ class ProductionController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(string $product_id = null)
     {
         return Inertia::render('Productions/Form', [
             'wash_opts' => WashOption::latest()->get(),
             'user' => User::find(1), // TODO change to current user
             'users' => User::latest()->get(),
             'products' => Product::latest()->get(),
+            'product_id' => $product_id
         ]);
     }
 

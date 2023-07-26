@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Loom;
 use App\Models\Product;
 use App\Models\Yarn;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class ProductsController extends Controller
+class ProductController extends Controller
 {
     protected $validateArray = [
         'sku' => ['required'],
@@ -22,7 +23,7 @@ class ProductsController extends Controller
         'divs' => "",
         'ppcm' => "",
         'pprepeat' => "",
-        'loom' => "",
+        'loom_id' =>  ['exists:looms,id'],
         'cut_width' => "",
         'cut_length' => "",
         'finish_width' => "",
@@ -38,15 +39,15 @@ class ProductsController extends Controller
     {
         return Inertia::render('Products/Index', [
             'products' => Product::latest()->paginate(5),
-            'yarns' => Yarn::latest()->get()
+            'yarns' => Yarn::latest()->get(),
         ]);
     }
 
     public function create()
     {
         return Inertia::render('Products/Form', [
-            'products' => Product::latest()->paginate(5),
-            'yarns' => Yarn::latest()->get()
+            'yarns' => Yarn::latest()->get(),
+            'looms' => Loom::latest()->get(),
         ]);
     }
 
@@ -61,24 +62,25 @@ class ProductsController extends Controller
     // Show Product - show
     public function show(Product $product)
     {
-        // return $product->with(['warp', 'weft_1', 'weft_2', 'weft_3', 'weft_4'])->get();
-
-        return Inertia::render('Products/Detail', [
+        return Inertia::render('Products/Show', [
             'product' => $product,
-            'warp' => Yarn::find($product->warp_id),
-            'weft1' => Yarn::find($product->weft_1_id),
-            'weft2' => Yarn::find($product->weft_2_id),
-            'weft3' => Yarn::find($product->weft_3_id),
-            'weft4' => Yarn::find($product->weft_4_id),
+            'warp' => $product->warp,
+            'weft1' => $product->weft_1,
+            'weft2' => $product->weft_2,
+            'weft3' => $product->weft_3,
+            'weft4' => $product->weft_4,
+            'loom' => $product->loom,
+            'productions' => $product->productions
         ]);
     }
 
     // Edit
     public function edit(Product $product)
     {
-        return Inertia::render('Products/Edit', [
+        return Inertia::render('Products/Form', [
             'product' => $product,
-            'yarns' => Yarn::all()
+            'yarns' => Yarn::latest()->get(),
+            'looms' => Loom::latest()->get(),
         ]);
     }
 

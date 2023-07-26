@@ -1,8 +1,12 @@
 import { Link, Head } from "@inertiajs/react";
 import Layout from "@/Layouts/Layout";
 import { useForm } from "@inertiajs/react";
-import { TextInput } from "@/Components/Form/Input";
+import { ReactSelectInput, TextInput } from "@/Components/Form/Input";
 import ReactSelect from "react-select";
+import Container from "@/Components/UI/Container";
+import { PageHeading } from "@/Components/UI/Heading";
+import { DangerLink, PrimaryLink } from "@/Components/Button";
+import PrimaryButton from "@/Components/PrimaryButton";
 
 const SelectLabel = ({ children }) => (
     <p className="mr-4 w-1/3 text-sm">
@@ -39,6 +43,7 @@ export default function ProductionForm({
     user = {},
     users = [],
     products = [],
+    product_id = "",
 }) {
     const id = production?.id;
 
@@ -49,7 +54,7 @@ export default function ProductionForm({
         num_of_repeats: production?.num_of_repeats ?? "",
         order_id: production?.order_id ?? "",
         packing: production?.packing ?? "",
-        product_id: production?.product_id ?? "",
+        product_id: production?.product_id ?? product_id ?? "",
         quantity: production?.quantity ?? "",
         total_length: production?.total_length ?? "",
         urgency: production?.urgency ?? "",
@@ -76,134 +81,124 @@ export default function ProductionForm({
         }
     };
 
-    const productsOption = products.map(({ id, sku }) => ({
-        value: id,
-        label: sku,
-    }));
-
-    const userOption = users.map(({ id, name }) => ({
-        value: id,
-        label: name,
-    }));
-
-    const washOption = wash_opts.map(({ id, name }) => ({
-        value: id,
-        label: name,
-    }));
-
     return (
         <Layout>
-            <Head title="Products" />
-
-            <h1 className="text-2xl text-center mb-10 font-semibold">
+            <Head title="Production Form" />
+            <PageHeading className="mt-4">
                 {!isCreate ? "Update Production" : "Create New Production"}
-            </h1>
-            <form className="flex flex-col max-w-lg mx-auto" onSubmit={submit}>
-                <TextInput
-                    name="customer"
-                    setData={setData}
-                    errors={errors}
-                    value={data["customer"]}
-                />
+            </PageHeading>
+            <Container className="mt-0">
+                <form className="flex flex-col" onSubmit={submit}>
+                    <TextInput
+                        name="customer"
+                        setData={setData}
+                        errors={errors}
+                        value={data["customer"]}
+                    />
 
-                <TextInput
-                    name="note"
-                    setData={setData}
-                    errors={errors}
-                    value={data["note"]}
-                />
+                    <TextInput
+                        name="note"
+                        setData={setData}
+                        errors={errors}
+                        value={data["note"]}
+                    />
 
-                <TextInput
-                    name="num_of_repeats"
-                    setData={setData}
-                    errors={errors}
-                    value={data["num_of_repeats"]}
-                />
+                    <TextInput
+                        name="num_of_repeats"
+                        setData={setData}
+                        errors={errors}
+                        value={data["num_of_repeats"]}
+                    />
 
-                <TextInput
-                    name="order_id"
-                    setData={setData}
-                    errors={errors}
-                    value={data["order_id"]}
-                />
+                    <TextInput
+                        name="order_id"
+                        setData={setData}
+                        errors={errors}
+                        value={data["order_id"]}
+                    />
 
-                <TextInput
-                    name="packing"
-                    setData={setData}
-                    errors={errors}
-                    value={data["packing"]}
-                />
+                    <TextInput
+                        name="packing"
+                        setData={setData}
+                        errors={errors}
+                        value={data["packing"]}
+                    />
 
-                {/* SELECT */}
-                <Select
-                    name="product_id"
-                    options={productsOption}
-                    setData={setData}
-                    errors={errors}
-                    selected={data["product_id"]}
-                />
+                    <ReactSelectInput
+                        label="product"
+                        options={products}
+                        name="product_id"
+                        setData={setData}
+                        errors={errors}
+                        value={data["product_id"]}
+                        labelKey="sku"
+                    />
 
-                <TextInput
-                    name="quantity"
-                    setData={setData}
-                    errors={errors}
-                    value={data["quantity"]}
-                />
+                    <TextInput
+                        name="quantity"
+                        setData={setData}
+                        errors={errors}
+                        value={data["quantity"]}
+                    />
 
-                <TextInput
-                    name="total_length"
-                    setData={setData}
-                    errors={errors}
-                    value={data["total_length"]}
-                />
+                    <TextInput
+                        name="total_length"
+                        setData={setData}
+                        errors={errors}
+                        value={data["total_length"]}
+                    />
 
-                <TextInput
-                    name="urgency"
-                    setData={setData}
-                    errors={errors}
-                    value={data["urgency"]}
-                />
+                    <TextInput
+                        name="urgency"
+                        setData={setData}
+                        errors={errors}
+                        value={data["urgency"]}
+                    />
 
-                {/* SELECT */}
-                <Select
-                    name="user_id"
-                    options={userOption}
-                    setData={setData}
-                    errors={errors}
-                    selected={data["user_id"]}
-                />
+                    {/* TODO - SET DEFUALT BY LOGIN INFO  */}
+                    <ReactSelectInput
+                        label="Written By"
+                        options={users}
+                        name="user_id"
+                        setData={setData}
+                        errors={errors}
+                        value={data["user_id"]}
+                        labelKey="name"
+                    />
 
-                {/* SELECT */}
-                <Select
-                    name="wash_option_id"
-                    options={washOption}
-                    setData={setData}
-                    errors={errors}
-                    selected={data["wash_option_id"]}
-                />
+                    <ReactSelectInput
+                        label="Wash Options"
+                        options={wash_opts}
+                        name="wash_option_id"
+                        setData={setData}
+                        errors={errors}
+                        value={data["wash_option_id"]}
+                        labelKey="name"
+                    />
 
-                <div className="buttons flex flex-row space-x-4 items-center justify-center mt-10">
-                    <button
-                        type="submit"
-                        disabled={processing}
-                        className="bg-gray-800 p-3 rounded-full text-white flex-1"
-                    >
-                        {!isCreate ? "Update" : "Create"}
-                    </button>
-                    {!isCreate ? (
-                        <Link
-                            href={`/productions/id}`}
-                            method="delete"
-                            className="text-sm text-red-600 w-20"
-                            as="button"
+                    <div className="buttons flex flex-row space-x-4 items-center justify-center mt-10">
+                        <PrimaryButton
+                            type="submit"
+                            disabled={processing}
+                            className="bg-gray-800 p-3 rounded-full text-white flex-1"
                         >
-                            Delete
-                        </Link>
-                    ) : (
-                        ""
-                    )}
-                </div>
-            </form>
+                            {!isCreate ? "Update" : "Create"}
+                        </PrimaryButton>
+                        {!isCreate ? (
+                            <DangerLink
+                                href={`/productions/id}`}
+                                method="delete"
+                                className="text-sm text-red-600 w-20"
+                                as="button"
+                            >
+                                Delete
+                            </DangerLink>
+                        ) : (
+                            ""
+                        )}
+                    </div>
+                </form>
+            </Container>
         </Layout>
     );
 }

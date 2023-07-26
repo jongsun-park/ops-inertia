@@ -1,11 +1,19 @@
-const Label = ({ label = "", children = "" }) => {
+const Label = ({ label = "", children = "", unit = "", className = "" }) => {
+    if (children == null) {
+        return null;
+    }
+
     return (
-        <p>
-            <span className="label mr-2 text-xs uppercase bg-gray-50 p-1 rounded-md">
+        <div className="flex flex-row m-0 items-start">
+            <span
+                className={`label mr-2 text-xs uppercase bg-gray-50 p-2 rounded-md ${className}`}
+            >
                 {label}
             </span>
-            {children}
-        </p>
+            <p className="py-[4px] text-sm">{children}</p>
+
+            {unit != "" && <span className="text-sm ml-2">{unit}</span>}
+        </div>
     );
 };
 

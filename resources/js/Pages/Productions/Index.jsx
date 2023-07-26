@@ -1,15 +1,10 @@
 import { Link, Head } from "@inertiajs/react";
 import Layout from "@/Layouts/Layout";
 import { Pagination } from "@/Components/Pagination";
-
-const Label = ({ label, children }) => (
-    <p>
-        <span className="px-1 py-0 text-xs bg-gray-50 border border-1 border-gray-100 rounded-sm mr-2 inline-block uppercase">
-            {label}
-        </span>{" "}
-        {children}
-    </p>
-);
+import Label from "@/Components/UI/Label";
+import Container, { Box } from "@/Components/UI/Container";
+import { PageHeading } from "@/Components/UI/Heading";
+import { DangerLink, PrimaryLink, SecondaryLink } from "@/Components/Button";
 
 const AuthorCard = ({ author }) => {
     const { name, email } = author;
@@ -70,11 +65,8 @@ const ProductionCard = ({ production }) => {
     } = production;
 
     return (
-        <li
-            key={id}
-            className="flex flex-row mb-3 border border-gray-200 p-4 rounded-md"
-        >
-            <div className="flex-1 space-y-1">
+        <Box key={id} className="relative">
+            <div className="flex-1 space-y-2">
                 <Label label="order_id">{order_id}</Label>
                 <Label label="customer">{customer}</Label>
                 <Label label="urgency">{urgency}</Label>
@@ -87,24 +79,19 @@ const ProductionCard = ({ production }) => {
                 <ProductCard product={product} />
                 <WashOptionCard wash_option={wash_option} />
             </div>
-            <div className="buttons flex flex-row space-x-2">
-                <div>
-                    <Link href={`/productions/${id}/edit`} className="text-sm">
-                        Edit
-                    </Link>
-                </div>
-                <div>
-                    <Link
-                        href={`/productions/${id}`}
-                        method="delete"
-                        className="text-sm text-red-600"
-                        as="button"
-                    >
-                        Delete
-                    </Link>
-                </div>
+            <div className="buttons flex flex-row space-x-2 items-start absolute right-4 top-4">
+                <SecondaryLink href={`/productions/${id}/edit`} as="button">
+                    Edit
+                </SecondaryLink>
+                <DangerLink
+                    href={`/productions/${id}`}
+                    method="delete"
+                    as="button"
+                >
+                    Delete
+                </DangerLink>
             </div>
-        </li>
+        </Box>
     );
 };
 
@@ -112,18 +99,13 @@ export default function Productions({ productions = [] }) {
     return (
         <Layout>
             <Head title="Productions" />
-            <div className="max-w-2xl mx-auto p-10">
-                <div className="flex flex-row justify-between">
-                    <h1 className="text-2xl text-center mb-10 font-semibold">
-                        Productions
-                    </h1>
+            <Container>
+                <div className="flex flex-row justify-between mb-8">
+                    <PageHeading>Productions</PageHeading>
                     <div>
-                        <a
-                            href="/productions/create"
-                            className="text-xs bg-gray-700 text-white py-2 px-4 rounded-md uppercase"
-                        >
+                        <PrimaryLink href="/productions/create">
                             Create New Production
-                        </a>
+                        </PrimaryLink>
                     </div>
                 </div>
 
@@ -143,7 +125,7 @@ export default function Productions({ productions = [] }) {
                     ))}
                 </ul>
                 <Pagination className="mt-16" links={productions.links} />
-            </div>
+            </Container>
         </Layout>
     );
 }
