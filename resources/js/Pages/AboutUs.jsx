@@ -1,12 +1,12 @@
 import { Link, Head } from "@inertiajs/react";
-import Layout from "@/Layouts/Layout";
+import { PageHeading } from "@/Components/UI/Heading";
 
 export default function AboutUs() {
     return (
-        <Layout>
+        <>
             <Head title="AboutUs" />
-            <h1>About Us</h1>
+            <PageHeading>About Us</PageHeading>
             <p>This is about us page</p>
-        </Layout>
+        </>
     );
 }

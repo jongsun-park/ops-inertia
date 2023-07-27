@@ -1,6 +1,6 @@
 export default function Container({ className, children, ...props }) {
     return (
-        <div {...props} className={`max-w-2xl mx-auto p-10 ` + className}>
+        <div {...props} className={className}>
             {children}
         </div>
     );

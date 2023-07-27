@@ -1,8 +1,7 @@
 import { Link, Head } from "@inertiajs/react";
-import Layout from "@/Layouts/Layout";
 import { Pagination } from "@/Components/Pagination";
 import Label from "@/Components/UI/Label";
-import Container, { Box } from "@/Components/UI/Container";
+import { Box } from "@/Components/UI/Container";
 import { PageHeading } from "@/Components/UI/Heading";
 import { DangerLink, PrimaryLink, SecondaryLink } from "@/Components/Button";
 
@@ -97,35 +96,34 @@ const ProductionCard = ({ production }) => {
 
 export default function Productions({ productions = [] }) {
     return (
-        <Layout>
+        <>
             <Head title="Productions" />
-            <Container>
-                <div className="flex flex-row justify-between mb-8">
-                    <PageHeading>Productions</PageHeading>
-                    <div>
-                        <PrimaryLink href="/productions/create">
-                            Create New Production
-                        </PrimaryLink>
-                    </div>
-                </div>
 
-                <ul>
-                    {/* If there don't have any productions */}
-                    {productions.data.length == 0 && (
-                        <p className="text-center text-md text-sky-700">
-                            Product not found. Please add any product.
-                        </p>
-                    )}
-                    {/* Loop products */}
-                    {productions.data.map((production) => (
-                        <ProductionCard
-                            key={production.id}
-                            production={production}
-                        />
-                    ))}
-                </ul>
-                <Pagination className="mt-16" links={productions.links} />
-            </Container>
-        </Layout>
+            <div className="flex flex-row justify-between">
+                <PageHeading>Productions</PageHeading>
+                <div>
+                    <PrimaryLink href="/productions/create">
+                        Create New Production
+                    </PrimaryLink>
+                </div>
+            </div>
+
+            <ul>
+                {/* If there don't have any productions */}
+                {productions.data.length == 0 && (
+                    <p className="text-center text-md text-sky-700">
+                        Product not found. Please add any product.
+                    </p>
+                )}
+                {/* Loop products */}
+                {productions.data.map((production) => (
+                    <ProductionCard
+                        key={production.id}
+                        production={production}
+                    />
+                ))}
+            </ul>
+            <Pagination className="mt-16" links={productions.links} />
+        </>
     );
 }

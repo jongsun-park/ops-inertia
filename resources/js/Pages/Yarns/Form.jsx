@@ -1,10 +1,9 @@
 import { Link, Head } from "@inertiajs/react";
-import Layout from "@/Layouts/Layout";
 import { useForm } from "@inertiajs/react";
 import { TextInput } from "@/Components/Form/Input";
 
 export default function CreateYarn({ yarn = {} }) {
-    let yarn_init = {
+    let init = {
         sku: yarn?.sku ?? "",
         grade: yarn?.grade ?? "",
         colour: yarn?.colour ?? "",
@@ -15,7 +14,7 @@ export default function CreateYarn({ yarn = {} }) {
     const isCreate = yarn?.id === undefined ? true : false;
 
     const { data, setData, post, put, reset, processing, errors } =
-        useForm(yarn_init);
+        useForm(init);
 
     const submit = (e) => {
         e.preventDefault();
@@ -32,14 +31,13 @@ export default function CreateYarn({ yarn = {} }) {
     };
 
     return (
-        <Layout>
+        <>
             <Head title="Products" />
-
             <h1 className="text-2xl text-center mb-10 font-semibold">
                 {!isCreate ? "Update Yarn" : "Create New Yarn"}
             </h1>
             <form className="flex flex-col max-w-lg mx-auto" onSubmit={submit}>
-                {Object.keys(yarn_init).map((input) => {
+                {Object.keys(init).map((input) => {
                     return (
                         <TextInput
                             name={input}
@@ -74,6 +72,6 @@ export default function CreateYarn({ yarn = {} }) {
                     )}
                 </div>
             </form>
-        </Layout>
+        </>
     );
 }

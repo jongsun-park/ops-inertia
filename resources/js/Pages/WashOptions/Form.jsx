@@ -1,7 +1,7 @@
 import { Link, Head } from "@inertiajs/react";
-import Layout from "@/Layouts/Layout";
 import { useForm } from "@inertiajs/react";
 import { TextInput } from "@/Components/Form/Input";
+import { PageHeading } from "@/Components/UI/Heading";
 
 export default function WashOptionForm({ wash_option = {} }) {
     let init = {
@@ -35,12 +35,12 @@ export default function WashOptionForm({ wash_option = {} }) {
     };
 
     return (
-        <Layout>
+        <>
             <Head title="Wash Options" />
 
-            <h1 className="text-2xl text-center mb-10 font-semibold">
+            <PageHeading>
                 {!isCreate ? "Update Wash Option" : "Create New Wash Option"}
-            </h1>
+            </PageHeading>
             <form className="flex flex-col max-w-lg mx-auto" onSubmit={submit}>
                 {Object.keys(init).map((input) => {
                     return (
@@ -77,6 +77,6 @@ export default function WashOptionForm({ wash_option = {} }) {
                     )}
                 </div>
             </form>
-        </Layout>
+        </>
     );
 }

@@ -20,3 +20,8 @@ TODO
 -   로거 컴포넌트
 
 -   인증
+
+Resources
+
+-   Inertia
+-   [How to Build Modern Laravel Apps With Inertia - with Jeffrey Way](https://www.youtube.com/watch?v=QyqrYdhSku0

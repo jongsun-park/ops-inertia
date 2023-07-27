@@ -1,9 +1,7 @@
 import { Link, Head } from "@inertiajs/react";
-import Layout from "@/Layouts/Layout";
 import { useForm } from "@inertiajs/react";
 import { ReactSelectInput, TextInput } from "@/Components/Form/Input";
 import ReactSelect from "react-select";
-import Container from "@/Components/UI/Container";
 import { PageHeading } from "@/Components/UI/Heading";
 import { DangerLink, PrimaryLink } from "@/Components/Button";
 import PrimaryButton from "@/Components/PrimaryButton";
@@ -82,123 +80,122 @@ export default function ProductionForm({
     };
 
     return (
-        <Layout>
+        <>
             <Head title="Production Form" />
             <PageHeading className="mt-4">
                 {!isCreate ? "Update Production" : "Create New Production"}
             </PageHeading>
-            <Container className="mt-0">
-                <form className="flex flex-col" onSubmit={submit}>
-                    <TextInput
-                        name="customer"
-                        setData={setData}
-                        errors={errors}
-                        value={data["customer"]}
-                    />
 
-                    <TextInput
-                        name="note"
-                        setData={setData}
-                        errors={errors}
-                        value={data["note"]}
-                    />
+            <form className="flex flex-col" onSubmit={submit}>
+                <TextInput
+                    name="customer"
+                    setData={setData}
+                    errors={errors}
+                    value={data["customer"]}
+                />
 
-                    <TextInput
-                        name="num_of_repeats"
-                        setData={setData}
-                        errors={errors}
-                        value={data["num_of_repeats"]}
-                    />
+                <TextInput
+                    name="note"
+                    setData={setData}
+                    errors={errors}
+                    value={data["note"]}
+                />
 
-                    <TextInput
-                        name="order_id"
-                        setData={setData}
-                        errors={errors}
-                        value={data["order_id"]}
-                    />
+                <TextInput
+                    name="num_of_repeats"
+                    setData={setData}
+                    errors={errors}
+                    value={data["num_of_repeats"]}
+                />
 
-                    <TextInput
-                        name="packing"
-                        setData={setData}
-                        errors={errors}
-                        value={data["packing"]}
-                    />
+                <TextInput
+                    name="order_id"
+                    setData={setData}
+                    errors={errors}
+                    value={data["order_id"]}
+                />
 
-                    <ReactSelectInput
-                        label="product"
-                        options={products}
-                        name="product_id"
-                        setData={setData}
-                        errors={errors}
-                        value={data["product_id"]}
-                        labelKey="sku"
-                    />
+                <TextInput
+                    name="packing"
+                    setData={setData}
+                    errors={errors}
+                    value={data["packing"]}
+                />
 
-                    <TextInput
-                        name="quantity"
-                        setData={setData}
-                        errors={errors}
-                        value={data["quantity"]}
-                    />
+                <ReactSelectInput
+                    label="product"
+                    options={products}
+                    name="product_id"
+                    setData={setData}
+                    errors={errors}
+                    value={data["product_id"]}
+                    labelKey="sku"
+                />
 
-                    <TextInput
-                        name="total_length"
-                        setData={setData}
-                        errors={errors}
-                        value={data["total_length"]}
-                    />
+                <TextInput
+                    name="quantity"
+                    setData={setData}
+                    errors={errors}
+                    value={data["quantity"]}
+                />
 
-                    <TextInput
-                        name="urgency"
-                        setData={setData}
-                        errors={errors}
-                        value={data["urgency"]}
-                    />
+                <TextInput
+                    name="total_length"
+                    setData={setData}
+                    errors={errors}
+                    value={data["total_length"]}
+                />
 
-                    {/* TODO - SET DEFUALT BY LOGIN INFO  */}
-                    <ReactSelectInput
-                        label="Written By"
-                        options={users}
-                        name="user_id"
-                        setData={setData}
-                        errors={errors}
-                        value={data["user_id"]}
-                        labelKey="name"
-                    />
+                <TextInput
+                    name="urgency"
+                    setData={setData}
+                    errors={errors}
+                    value={data["urgency"]}
+                />
 
-                    <ReactSelectInput
-                        label="Wash Options"
-                        options={wash_opts}
-                        name="wash_option_id"
-                        setData={setData}
-                        errors={errors}
-                        value={data["wash_option_id"]}
-                        labelKey="name"
-                    />
+                {/* TODO - SET DEFUALT BY LOGIN INFO  */}
+                <ReactSelectInput
+                    label="Written By"
+                    options={users}
+                    name="user_id"
+                    setData={setData}
+                    errors={errors}
+                    value={data["user_id"]}
+                    labelKey="name"
+                />
 
-                    <div className="buttons flex flex-row space-x-4 items-center justify-center mt-10">
-                        <PrimaryButton
-                            type="submit"
-                            disabled={processing}
-                            className="bg-gray-800 p-3 rounded-full text-white flex-1"
+                <ReactSelectInput
+                    label="Wash Options"
+                    options={wash_opts}
+                    name="wash_option_id"
+                    setData={setData}
+                    errors={errors}
+                    value={data["wash_option_id"]}
+                    labelKey="name"
+                />
+
+                <div className="buttons flex flex-row space-x-4 items-center justify-center mt-10">
+                    <PrimaryButton
+                        type="submit"
+                        disabled={processing}
+                        className="bg-gray-800 p-3 rounded-full text-white flex-1"
+                    >
+                        {!isCreate ? "Update" : "Create"}
+                    </PrimaryButton>
+                    {!isCreate ? (
+                        <DangerLink
+                            href={`/productions/id}`}
+                            method="delete"
+                            className="text-sm text-red-600 w-20"
+                            as="button"
                         >
-                            {!isCreate ? "Update" : "Create"}
-                        </PrimaryButton>
-                        {!isCreate ? (
-                            <DangerLink
-                                href={`/productions/id}`}
-                                method="delete"
-                                className="text-sm text-red-600 w-20"
-                                as="button"
-                            >
-                                Delete
-                            </DangerLink>
-                        ) : (
-                            ""
-                        )}
-                    </div>
-                </form>
-            </Container>
-        </Layout>
+                            Delete
+                        </DangerLink>
+                    ) : (
+                        ""
+                    )}
+                </div>
+            </form>
+        </>
     );
 }

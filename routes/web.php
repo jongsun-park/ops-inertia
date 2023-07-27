@@ -11,6 +11,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+
+// Authentications - Template
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
 //         'canLogin' => Route::has('login'),
@@ -73,8 +75,7 @@ Route::delete('/wash_options/{wash_option}', [WashOptionController::class, 'dest
 // Production
 Route::get('/productions', [ProductionController::class, 'index'])->name('productions');
 Route::get('/productions/create/{product_id?}', [ProductionController::class, 'create']);
-
 Route::post('/productions', [ProductionController::class, 'store']);
 Route::get('/productions/{production}/edit', [ProductionController::class, 'edit']);
-Route::put('/productions/{production}', [ProductionController::class, 'update']); //
+Route::put('/productions/{production}', [ProductionController::class, 'update']);
 Route::delete('/productions/{production}', [ProductionController::class, 'destroy']);
