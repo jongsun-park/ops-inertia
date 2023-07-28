@@ -1,6 +1,6 @@
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import NavLink from "@/Components/NavLink";
-import { usePage } from "@inertiajs/react";
+import { Head, usePage } from "@inertiajs/react";
 
 const Navigation = () => {
     const { url, component } = usePage();
@@ -71,9 +71,15 @@ const Footer = () => (
 );
 
 export default function Layout({ children }) {
-    // Accessing shared data
-    // const { auth } = usePage().props;
-    // console.log(auth.username);
+    <Head>
+        <title>OPS</title>
+        <meta
+            type="description"
+            content="OPS Production Management tools"
+            head-key="description"
+        />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    </Head>;
 
     return (
         <div className="flex flex-col min-h-screen">

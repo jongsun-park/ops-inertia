@@ -1,15 +1,17 @@
 <?php
 
+use App\Models\User;
+use Inertia\Inertia;
+use App\Models\Product;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\LoomController;
-use App\Http\Controllers\ProductionController;
+use App\Http\Controllers\YarnController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProductionController;
 use App\Http\Controllers\WashOptionController;
-use App\Http\Controllers\YarnController;
-use App\Models\Product;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 
 // Authentications - Template
@@ -71,7 +73,6 @@ Route::get('/wash_options/{wash_option}/edit', [WashOptionController::class, 'ed
 Route::put('/wash_options/{wash_option}', [WashOptionController::class, 'update']); //
 Route::delete('/wash_options/{wash_option}', [WashOptionController::class, 'destroy']);
 
-
 // Production
 Route::get('/productions', [ProductionController::class, 'index'])->name('productions');
 Route::get('/productions/create/{product_id?}', [ProductionController::class, 'create']);
@@ -79,3 +80,29 @@ Route::post('/productions', [ProductionController::class, 'store']);
 Route::get('/productions/{production}/edit', [ProductionController::class, 'edit']);
 Route::put('/productions/{production}', [ProductionController::class, 'update']);
 Route::delete('/productions/{production}', [ProductionController::class, 'destroy']);
+
+
+// Users
+// Inertia tutorials
+Route::get('/users', function () {
+    $search = request('q') ?? '';
+    $page = request('page') ?? '';
+
+    if ($search) {
+        return Inertia::render('User', [
+            'users' => User::query()
+                ->when($search, function ($query, $search) {
+                    $query->where('name', 'like', "%{$search}%");
+                })
+                ->paginate(15, ['id', 'name', 'email'])
+                ->appends(['q' => $search]),
+            'search' => $search,
+            'page' => $page
+        ]);
+    }
+
+    return Inertia::render('User', [
+        'users' => User::paginate(15, ['id', 'name', 'email']),
+        'page' => $page
+    ]);
+});

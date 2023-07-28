@@ -10,7 +10,14 @@ import { PrimaryLink, SecondaryLink, DangerLink } from "@/Components/Button";
 export default function Products({ products = [] }) {
     return (
         <>
-            <Head title="Products" />
+            <Head>
+                <title>Products</title>
+                <meta
+                    type="description"
+                    content="Products"
+                    head-key="description"
+                />
+            </Head>
 
             <div className="flex flex-row justify-between items-center">
                 <PageHeading className="mb-0">Products</PageHeading>
