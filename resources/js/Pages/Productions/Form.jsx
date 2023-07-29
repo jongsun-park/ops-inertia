@@ -12,29 +12,6 @@ const SelectLabel = ({ children }) => (
     </p>
 );
 
-const Select = ({ options = [], name, selected, setData, errors }) => {
-    const defaultValue = options.filter((opt) => opt.value == selected)[0];
-    return (
-        <div className="flex items-center mb-1">
-            <SelectLabel>{name}</SelectLabel>
-            <ReactSelect
-                className="flex-1"
-                defaultValue={defaultValue}
-                isClearable={true}
-                isSearchable={true}
-                onChange={(e) => {
-                    setData(name, e?.value ?? "");
-                }}
-                name="color"
-                options={options}
-            />
-            {errors[name] && (
-                <div className="text-sm mb-2 text-red-600">{errors[name]}</div>
-            )}
-        </div>
-    );
-};
-
 export default function ProductionForm({
     production = {},
     wash_opts = [],
@@ -174,11 +151,11 @@ export default function ProductionForm({
                     labelKey="name"
                 />
 
-                <div className="buttons flex flex-row space-x-4 items-center justify-center mt-10">
+                <div className="buttons mt-10 flex flex-row items-center justify-center space-x-4">
                     <PrimaryButton
                         type="submit"
                         disabled={processing}
-                        className="bg-gray-800 p-3 rounded-full text-white flex-1"
+                        className="flex-1 rounded-full bg-gray-800 p-3 text-white"
                     >
                         {!isCreate ? "Update" : "Create"}
                     </PrimaryButton>
@@ -186,7 +163,7 @@ export default function ProductionForm({
                         <DangerLink
                             href={`/productions/id}`}
                             method="delete"
-                            className="text-sm text-red-600 w-20"
+                            className="w-20 text-sm text-red-600"
                             as="button"
                         >
                             Delete

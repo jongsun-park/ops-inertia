@@ -1,6 +1,7 @@
 import { Link, Head } from "@inertiajs/react";
 import { useForm } from "@inertiajs/react";
 import { TextInput } from "@/Components/Form/Input";
+import { SubmitButton } from "@/Components/Button";
 
 export default function CreateYarn({ yarn = {} }) {
     let init = {
@@ -33,10 +34,10 @@ export default function CreateYarn({ yarn = {} }) {
     return (
         <>
             <Head title="Products" />
-            <h1 className="text-2xl text-center mb-10 font-semibold">
+            <h1 className="mb-10 text-center text-2xl font-semibold">
                 {!isCreate ? "Update Yarn" : "Create New Yarn"}
             </h1>
-            <form className="flex flex-col max-w-lg mx-auto" onSubmit={submit}>
+            <form className="mx-auto flex max-w-lg flex-col" onSubmit={submit}>
                 {Object.keys(init).map((input) => {
                     return (
                         <TextInput
@@ -50,19 +51,15 @@ export default function CreateYarn({ yarn = {} }) {
                     );
                 })}
 
-                <div className="buttons flex flex-row space-x-4 items-center justify-center mt-10">
-                    <button
-                        type="submit"
-                        disabled={processing}
-                        className="bg-gray-800 p-3 rounded-full text-white flex-1"
-                    >
+                <div className="buttons mt-10 flex flex-row items-center justify-center space-x-4">
+                    <SubmitButton disabled={processing}>
                         {!isCreate ? "Update" : "Create"}
-                    </button>
+                    </SubmitButton>
                     {!isCreate ? (
                         <Link
                             href={`/yarns/id}`}
                             method="delete"
-                            className="text-sm text-red-600 w-20"
+                            className="w-20 text-sm text-red-600"
                             as="button"
                         >
                             Delete

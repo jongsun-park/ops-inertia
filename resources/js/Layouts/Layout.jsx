@@ -46,20 +46,25 @@ const Navigation = () => {
                         Wash Options
                     </NavLink>
                 </li>
+                <li>
+                    <NavLink href="/users" active={url.startsWith("/users")}>
+                        Users
+                    </NavLink>
+                </li>
             </ul>
         </nav>
     );
 };
 
 const Header = () => (
-    <header className="bg-gray-100/60 flex justify-between p-4 fixed top-0 left-0 right-0 shadow-sm">
+    <header className="fixed left-0 right-0 top-0 flex justify-between bg-gray-100/60 p-4 shadow-sm">
         <ApplicationLogo />
         <Navigation />
     </header>
 );
 
 const Footer = () => (
-    <footer className="bg-gray-800 p-4 text-white flex flex-row justify-between">
+    <footer className="flex flex-row justify-between bg-gray-800 p-4 text-white">
         <p className="copy">&copy; All rights are reserved</p>
         <p className="author">
             This site was built by{" "}
@@ -82,9 +87,9 @@ export default function Layout({ children }) {
     </Head>;
 
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex min-h-screen flex-col">
             <Header />
-            <main className="w-[90vw] max-w-[960px] mx-auto my-[60px] py-6 flex-1 ">
+            <main className="mx-auto my-[60px] w-[90vw] max-w-[960px] flex-1 py-6 ">
                 {children}
             </main>
             <Footer />

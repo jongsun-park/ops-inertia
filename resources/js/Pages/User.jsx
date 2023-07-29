@@ -3,31 +3,29 @@ import { PageHeading } from "@/Components/UI/Heading";
 import { Link, Head } from "@inertiajs/react";
 import { useState, useEffect } from "react";
 import { router } from "@inertiajs/react";
+import { debounce } from "lodash";
+import { useCallback } from "react";
 
 export default function User({ users, search = "", page }) {
-    const [query, setQuery] = useState(search);
     const [curPage, setCurPage] = useState(page);
+    const [searchInput, setSearchInput] = useState(search);
 
-    const queryHandle = (e) => {
-        setCurPage(1);
-        setQuery(e.target.value);
+    const sendQuery = (q) => {
+        const data = q ? { q: q, page: curPage } : { page: curPage };
+        router.get("/users", data, { preserveState: true, replace: true });
     };
 
-    useEffect(() => {
-        const data = query
-            ? {
-                  q: query,
-                  page: curPage,
-              }
-            : {
-                  page: curPage,
-              };
+    // Get results after 300ms after typing
+    const delayedSearch = useCallback(
+        debounce((q) => sendQuery(q), 300),
+        [],
+    );
 
-        router.get("/users", data, {
-            preserveState: true,
-            replace: true,
-        });
-    }, [query]);
+    const searchInputHandler = (e) => {
+        setSearchInput(e.target.value);
+        setCurPage(1);
+        delayedSearch(e.target.value);
+    };
 
     return (
         <>
@@ -40,8 +38,8 @@ export default function User({ users, search = "", page }) {
                     name="search"
                     id="search"
                     className="w-full rounded-md ring-1 ring-gray-400 focus:ring-gray-800 md:w-1/3 "
-                    value={query}
-                    onChange={queryHandle}
+                    value={searchInput}
+                    onChange={searchInputHandler}
                 />
             </div>
 

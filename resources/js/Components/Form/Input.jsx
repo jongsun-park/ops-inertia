@@ -13,17 +13,17 @@ export const TextInput = ({
     ...props
 }) => {
     return (
-        <div className="flex items-center mb-1">
+        <div className="mb-1 flex items-center">
             <label htmlFor={name} className="mr-4 w-1/3 text-sm">
                 {formatLabel(name)}
             </label>
-            <div className="flex-1 mb-2 w-2/3 flex flex-col">
-                <div className="flex flex-row border border-gray-300 rounded-md items-center pr-2 overflow-hidden">
+            <div className="mb-2 flex w-2/3 flex-1 flex-col">
+                <div className="flex flex-row items-center overflow-hidden rounded-md border border-gray-300 pr-2">
                     <input
                         {...props}
                         type={type}
                         id={name}
-                        className="border-0 focus:ring-0 flex-1 focus:bg-slate-50"
+                        className="flex-1 border-0 focus:bg-slate-50 focus:ring-0"
                         value={value}
                         onChange={(e) => setData(name, e.target.value)}
                         placeholder={placeholder}
@@ -32,7 +32,7 @@ export const TextInput = ({
                 </div>
 
                 {errors[name] && (
-                    <div className="text-sm mb-2 text-red-600">
+                    <div className="mb-2 text-sm text-red-600">
                         {errors[name]}
                     </div>
                 )}
@@ -50,17 +50,17 @@ export const SelectInput = ({
     errors,
 }) => {
     return (
-        <div className="flex items-center mb-1">
+        <div className="mb-1 flex items-center">
             <label htmlFor={name} className="mr-4 w-1/3 text-sm">
                 {formatLabel(label)}
             </label>
-            <div className="flex-1 mb-2 w-2/3 flex flex-col">
+            <div className="mb-2 flex w-2/3 flex-1 flex-col">
                 <select
                     name={name}
                     id={name}
                     onChange={(e) => setData(name, e.target.value)}
                     value={value}
-                    className="border border-gray-300 rounded-md"
+                    className="rounded-md border border-gray-300"
                 >
                     <option value="">Please choose an option</option>
                     {/* looms */}
@@ -73,7 +73,7 @@ export const SelectInput = ({
                     })}
                 </select>
                 {errors[name] && (
-                    <div className="text-sm mb-2 text-red-600">
+                    <div className="mb-2 text-sm text-red-600">
                         {errors[name]}
                     </div>
                 )}
@@ -97,14 +97,14 @@ export const ReactSelectInput = ({
         label: props[labelKey],
     }));
 
-    const defaultValue = selectOptions.filter((opt) => opt.value === value)[0];
+    const defaultValue = selectOptions.filter((opt) => opt.value == value)[0];
 
     return (
-        <div className="flex items-center mb-1">
+        <div className="mb-1 flex items-center">
             <label htmlFor={name} className="mr-4 w-1/3 text-sm">
                 {formatLabel(label)}
             </label>
-            <div className="flex-1 mb-2 w-2/3 flex flex-col">
+            <div className="mb-2 flex w-2/3 flex-1 flex-col">
                 <Select
                     options={selectOptions}
                     name={name}
@@ -117,7 +117,7 @@ export const ReactSelectInput = ({
                 />
 
                 {errors[name] && (
-                    <div className="text-sm mb-2 text-red-600">
+                    <div className="mb-2 text-sm text-red-600">
                         {errors[name]}
                     </div>
                 )}

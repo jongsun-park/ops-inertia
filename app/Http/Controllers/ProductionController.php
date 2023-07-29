@@ -35,7 +35,7 @@ class ProductionController extends Controller
         ]);
     }
 
-    public function create(string $product_id = null)
+    public function create($product_id = null)
     {
         return Inertia::render('Productions/Form', [
             'wash_opts' => WashOption::latest()->get(),
