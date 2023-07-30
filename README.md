@@ -24,3 +24,11 @@ Resources
 
 -   Inertia
 -   [How to Build Modern Laravel Apps With Inertia - with Jeffrey Way](https://www.youtube.com/watch?v=QyqrYdhSku0
+
+2023-07-29
+https://laracasts.com/series/build-modern-laravel-apps-using-inertia-js/episodes/23
+
+Testing account
+
+-   email: testing@email.com
+-   password: testingpassword123

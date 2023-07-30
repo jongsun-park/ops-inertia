@@ -6,7 +6,7 @@ import { router } from "@inertiajs/react";
 import { debounce } from "lodash";
 import { useCallback } from "react";
 
-export default function User({ users, search = "", page }) {
+export default function User({ users, search = "", page, can }) {
     const [curPage, setCurPage] = useState(page);
     const [searchInput, setSearchInput] = useState(search);
 
@@ -31,7 +31,18 @@ export default function User({ users, search = "", page }) {
         <>
             <Head title="User" />
             <div className="mb-6 flex flex-col items-center justify-between md:flex-row">
-                <PageHeading>Users</PageHeading>
+                <div className="items-base flex items-baseline space-x-4">
+                    <PageHeading>Users</PageHeading>
+                    {can?.createUser && (
+                        <Link
+                            href="#"
+                            className="text-xs font-semibold uppercase text-blue-400 hover:text-blue-600"
+                        >
+                            Create New User
+                        </Link>
+                    )}
+                </div>
+
                 <input
                     type="search"
                     placeholder="search"
