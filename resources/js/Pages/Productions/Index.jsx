@@ -42,7 +42,7 @@ const WashOptionCard = ({ wash_option }) => {
     );
 };
 
-const ProductionCard = ({ production }) => {
+const ProductionCard = ({ production, isAllowed }) => {
     const {
         id,
         product_id,
@@ -78,40 +78,46 @@ const ProductionCard = ({ production }) => {
                 <ProductCard product={product} />
                 <WashOptionCard wash_option={wash_option} />
             </div>
-            <div className="buttons flex flex-row space-x-2 items-start absolute right-4 top-4">
-                <SecondaryLink href={`/productions/${id}/edit`} as="button">
-                    Edit
-                </SecondaryLink>
-                <DangerLink
-                    href={`/productions/${id}`}
-                    method="delete"
-                    as="button"
-                >
-                    Delete
-                </DangerLink>
-            </div>
+            {isAllowed && (
+                <div className="buttons absolute right-4 top-4 flex flex-row items-start space-x-2">
+                    <SecondaryLink href={`/productions/${id}/edit`} as="button">
+                        Edit
+                    </SecondaryLink>
+                    <DangerLink
+                        href={`/productions/${id}`}
+                        method="delete"
+                        as="button"
+                    >
+                        Delete
+                    </DangerLink>
+                </div>
+            )}
         </Box>
     );
 };
 
-export default function Productions({ productions = [] }) {
+export default function Productions({ productions = [], can }) {
+    const isAllowed = can?.update;
+
     return (
         <>
             <Head title="Productions" />
 
             <div className="flex flex-row justify-between">
                 <PageHeading>Productions</PageHeading>
-                <div>
-                    <PrimaryLink href="/productions/create">
-                        Create New Production
-                    </PrimaryLink>
-                </div>
+                {isAllowed && (
+                    <div>
+                        <PrimaryLink href="/productions/create">
+                            Create New Production
+                        </PrimaryLink>
+                    </div>
+                )}
             </div>
 
             <ul>
                 {/* If there don't have any productions */}
                 {productions.data.length == 0 && (
-                    <p className="text-center text-md text-sky-700">
+                    <p className="text-md text-center text-sky-700">
                         Product not found. Please add any product.
                     </p>
                 )}
@@ -120,6 +126,7 @@ export default function Productions({ productions = [] }) {
                     <ProductionCard
                         key={production.id}
                         production={production}
+                        isAllowed={isAllowed}
                     />
                 ))}
             </ul>

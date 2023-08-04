@@ -2,13 +2,13 @@
 
 namespace App\Policies;
 
+use App\Models\Production;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
-use Illuminate\Support\Facades\Auth;
 
-class UserPolicy
+class ProductionPolicy
 {
-    protected $allowedRole = ['admin'];
+    protected $allowedRole = ['admin', 'designer'];
 
     /**
      * Determine whether the user can view any models.

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Loom;
-use App\Models\Product;
+use App\Models\User;
 use App\Models\Yarn;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Product;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -39,7 +41,9 @@ class ProductController extends Controller
     {
         return Inertia::render('Products/Index', [
             'products' => Product::latest()->paginate(5),
-            'yarns' => Yarn::latest()->get(),
+            'can' => [
+                'update' => Auth::user()->can('create', Product::class)
+            ]
         ]);
     }
 

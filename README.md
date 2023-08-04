@@ -1,34 +1,34 @@
-OPS TODO
+# OPS & Inertia
 
-Completed
+## About the project
 
--   wash option 제출 폼 만들기 // DONE
--   Resource 구현 // DONE
--   컴포넌트 분리 // DONE
--   Production 페이지 // DONE
+## Developmenet Dependency
 
-TODO
+Framework - Laravel & Inertia
+Database - MySQL
 
--   Product Form 에서 Loom 필드 셀렉 요소로 만들기 // DONE
--   Refactoring Layout // DONE
--   리액트 셀렉트 컴포넌트를 사용해서 검색 가능 하도록 하기 // DONE
--   프로덕트 리스트에서 버튼을 클릭하여 프로덕션 생성하는 버튼 만들기 // DONE
+## User
 
--   nullOnDelete(); - Relationship
-
--   로거 컴포넌트
-
--   인증
-
-Resources
-
--   Inertia
--   [How to Build Modern Laravel Apps With Inertia - with Jeffrey Way](https://www.youtube.com/watch?v=QyqrYdhSku0
-
-2023-07-29
-https://laracasts.com/series/build-modern-laravel-apps-using-inertia-js/episodes/23
-
-Testing account
+Admin account
 
 -   email: testing@email.com
 -   password: testingpassword123
+
+Guest Account
+
+-   email: guest@email.com
+-   password: testingpassword123
+
+User Role
+
+0 = admin = all access (can delete things, add users, etc)
+1 = designer = make products and production orders
+2 = updater = update order status
+3 = guest = no access
+
+Policy
+
+-   User - only admin
+-   Product - admin, designer
+-   Production - admin, designer
+-   Order - admin, designer, updator

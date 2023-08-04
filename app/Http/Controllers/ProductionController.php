@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Production;
 use App\Models\WashOption;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductionController extends Controller
 {
@@ -31,7 +32,10 @@ class ProductionController extends Controller
 
         // return Production::latest()->paginate(5);
         return Inertia::render('Productions/Index', [
-            'productions' => $productions
+            'productions' => $productions,
+            'can' => [
+                'update' => Auth::user()->can('create', Production::class)
+            ]
         ]);
     }
 

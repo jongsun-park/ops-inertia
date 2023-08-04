@@ -8,6 +8,7 @@ import { Link, usePage } from "@inertiajs/react";
 export default function Authenticated({ header = "", children }) {
     const { auth: user } = usePage().props;
     const { url } = usePage();
+    const isAdmin = user?.user?.role == "admin";
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
@@ -41,38 +42,44 @@ export default function Authenticated({ header = "", children }) {
                                     Productions
                                 </NavLink>
                             </div>
-                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink
-                                    href="/yarns"
-                                    active={url.startsWith("/yarns")}
-                                >
-                                    Yarns
-                                </NavLink>
-                            </div>
-                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink
-                                    href="/looms"
-                                    active={url.startsWith("/looms")}
-                                >
-                                    Looms
-                                </NavLink>
-                            </div>
-                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink
-                                    href="/wash_options"
-                                    active={url.startsWith("/wash_options")}
-                                >
-                                    Wash Options
-                                </NavLink>
-                            </div>
-                            <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink
-                                    href="/users"
-                                    active={url.startsWith("/users")}
-                                >
-                                    Users
-                                </NavLink>
-                            </div>
+                            {isAdmin && (
+                                <>
+                                    <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                        <NavLink
+                                            href="/yarns"
+                                            active={url.startsWith("/yarns")}
+                                        >
+                                            Yarns
+                                        </NavLink>
+                                    </div>
+                                    <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                        <NavLink
+                                            href="/looms"
+                                            active={url.startsWith("/looms")}
+                                        >
+                                            Looms
+                                        </NavLink>
+                                    </div>
+                                    <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                        <NavLink
+                                            href="/wash_options"
+                                            active={url.startsWith(
+                                                "/wash_options",
+                                            )}
+                                        >
+                                            Wash Options
+                                        </NavLink>
+                                    </div>
+                                    <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                        <NavLink
+                                            href="/users"
+                                            active={url.startsWith("/users")}
+                                        >
+                                            Users
+                                        </NavLink>
+                                    </div>
+                                </>
+                            )}
 
                             {/* END OPS LINKS */}
 

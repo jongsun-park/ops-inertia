@@ -35,12 +35,13 @@ class HandleInertiaRequests extends Middleware
             'auth' => Auth::user() ? [
                 'user' => [
                     'name' => Auth::user()->name,
-                    'email' => Auth::user()->email
+                    'email' => Auth::user()->email,
+                    'role' => Auth::user()->role,
                 ],
                 // only send the data needed
             ] : null,
             'ziggy' => function () use ($request) {
-                return array_merge((new Ziggy)->toArray(), [
+                return array_merge((new Ziggy())->toArray(), [
                     'location' => $request->url(),
                 ]);
             }
